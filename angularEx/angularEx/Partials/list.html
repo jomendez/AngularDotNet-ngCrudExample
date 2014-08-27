@@ -1,0 +1,22 @@
+﻿<input type="text" ng-model="search" class="search-query" placeholder="Search">
+<table>
+  <thead>
+  <tr>
+    <th>Project</th>
+    <th>Description</th>
+    <th>
+        <new-icon></new-icon>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+    <td><a ng-href="{{project.Site}}" target="_blank">{{project.Name}}</a></td>
+    <td>{{project.Description}}</td>
+    <td>
+     <edit-icon></edit-icon>
+        <delete-icon></delete-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>
