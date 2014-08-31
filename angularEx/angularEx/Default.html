@@ -1,24 +1,14 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="project">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="default">
 <head>
     <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="Content/css/style.css"/>
+    <link rel="stylesheet" href="Content/css/style.css" />
     <title>Angular My Projects</title>
 </head>
-<body>
-    <div class="myprojects-content">
-        <div class="panel panel-default myprojects-content-panel">
-            <div class="panel-heading">My Projects 
-                <span class="myproyects-ajax-loading-container">
-                    <img src="Content/images/ajax_loader_blue_32.gif" class="myproyects-ajax-loading-img" />
-                </span>
-            </div>
-            <div class="panel-body">
-                <div ng-view></div>
-            </div>
-        </div>
-    </div>
+<body ng-controller="mainWraperController">
+
+    <ng-crud serviceContract="servContract" datacontract="dataContract"></ng-crud>
 
 
     <!-- JS  Libraries -->
@@ -30,9 +20,11 @@
     <script src="Scripts/lib/underscore-min.js"></script>
 
     <!--Custom JS code-->
+    <script src="Scripts/default.js"></script>
     <script src="Scripts/Js/Main.js"></script>
     <script src="Scripts/Js/Controllers/Controllers.js"></script>
     <script src="Scripts/Js/Services/Services.js"></script>
     <script src="Scripts/Js/Directives/Directives.js"></script>
+    <script src="Scripts/Services.js"></script>
 </body>
 </html>

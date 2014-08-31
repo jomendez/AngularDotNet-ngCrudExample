@@ -36,7 +36,8 @@ namespace angularEx.api
         [HttpGet]
         public TodoDatas getItem([FromUri] int id)
         {
-            return context.TodoData.SingleOrDefault(p=> p.Id == id);
+            TodoDatas aux = context.TodoData.SingleOrDefault(p=> p.Id == id);
+            return aux;
         }
 
         [HttpPost]

@@ -118,6 +118,8 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\images\ajax_loader_blue_32.gif" />
     <Content Include="Default.html" />
+    <Content Include="Partials\main.html" />
+    <Content Include="Scripts\default.js" />
     <Content Include="Scripts\Js\Directives\Directives.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -141,6 +143,7 @@
     <Content Include="Scripts\Js\Services\Services.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\lib\underscore-min.js" />
+    <Content Include="Scripts\Services.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

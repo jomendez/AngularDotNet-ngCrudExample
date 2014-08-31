@@ -1,35 +1,82 @@
 ﻿angular.module('project')
 
-.controller('CreateCtrl', function ($scope, $location, $timeout, crudService) {
-    $scope.save = function () {
-        crudService.saveItem($scope.project).then(function (data) {
-            $location.path('/');
+.controller('mainController', function ($scope, crudService) {
+        $scope.templateName = "Partials/list.html";
+
+        $scope.edit = function (id) {
+            $scope.templateName = "Partials/detail.html";
+            $scope.id = id;
+        };
+
+        $scope.new = function () {
+            $scope.templateName = "Partials/detail.html";
+            $scope.id = null;
+        };
+
+        $scope.goHome = function () {
+            $scope.templateName = "Partials/list.html";
+        }
+    })
+
+.controller('EditOrCreateCtrl', function ($scope, crudService, ajaxLoadingService) {
+
+    $scope.getKeyFromObj = function (obj) {
+        if (!obj)
+            return null;
+
+        var key = _.keys(obj)[0];
+        return key;
+    }
+
+    $scope.getValFromObj = function (obj) {
+        if (!obj)
+            return null;
+
+        var val = _.values(obj)[0];
+        return val;
+    }
+
+    if ($scope.id) {
+        var personId = $scope.id;
+
+        ajaxLoadingService.showLoadingImg();
+        crudService.getItem(personId).then(function (response) {
+           // $scope.project = [];
+            $scope.project = crudService.formatResponseToDataContract(response);
+            ajaxLoadingService.hideLoadingImg();
         });
-    };
+
+        $scope.save = function () {
+            ajaxLoadingService.showLoadingImg();
+            crudService.modifyItem(crudService.formatFromDataContractToObj($scope.project)).then(function (data) {
+                ajaxLoadingService.hideLoadingImg();
+                $scope.goHome();
+            });
+        };
+    } else {
+        $scope.save = function () {
+            ajaxLoadingService.showLoadingImg();
+            crudService.saveItem($scope.project).then(function (data) {
+                ajaxLoadingService.hideLoadingImg();
+                $scope.goHome();
+            });
+        };
+    }
+
+
 })
 
-.controller('EditCtrl', function ($scope, $location, $routeParams, crudService, deleteItemMethod) {
+.controller('ListCtrl', ['$scope', 'crudService', 'ajaxLoadingService', function ($scope, crudService, ajaxLoadingService) {
+    var dataContract = crudService.getDataContract();
+    $scope.keyColumns = crudService.getDataContractKeys();
+    $scope.valuesColumns = crudService.getDataContractValues();
 
-      var personId = $routeParams.projectId;
-
-      crudService.getItem(personId).then(function (response) {
-      $scope.project = response;
-      });
-
-      $scope.destroy = deleteItemMethod.deleteItem;
-
-      $scope.save = function () {
-          crudService.modifyItem($scope.project).then(function (data) {
-              $location.path('/');
-          });
-      };
-})
-
-
-
-    .controller('ListCtrl', function ($scope, crudService) {
-        crudService.refreshView().then(function (response) {
+    $scope.dataContract = dataContract;
+    
+    ajaxLoadingService.showLoadingImg();
+    crudService.refreshView().then(function (response) {
             $scope.projects = response;
+            ajaxLoadingService.hideLoadingImg();
         });
        
-    });
+    }]);

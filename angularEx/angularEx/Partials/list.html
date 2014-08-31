@@ -1,29 +1,30 @@
-﻿
-<div class="input-group myprojects-custom-search">
-    <span class="input-group-addon "><i class="glyphicon glyphicon-search myprojects-search-icon"></i></span>
-    <input type="text" ng-model="search" class="search-query form-control" placeholder="Search">
-</div>
+﻿<div ng-controller="ListCtrl">
+    <div class="input-group myprojects-custom-search">
+        <span class="input-group-addon "><i class="glyphicon glyphicon-search myprojects-search-icon"></i></span>
+        <input type="text" ng-model="search" class="search-query form-control" placeholder="Search">
+    </div>
 
-<div class="myproyects-add-btn">
-    <new-button></new-button>
-</div>
+    <div class="myproyects-add-btn">
+        <new-button></new-button>
+    </div>
 
-<table id="table-list" class="table table-hover table-condenced .table-responsive">
-    <thead>
-        <tr>
-            <th class="myprojects-table-td-30">Project</th>
-            <th class="myprojects-table-td-70">Description</th>
-            <th class="myprojects-table-td-10">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
-            <td><a ng-href="{{project.Site}}" target="_blank">{{project.Name}}</a></td>
-            <td>{{project.Description}}</td>
-            <td>
-                <edit-icon class="myproyects-edit-icon-tooltips"></edit-icon>
-                <delete-icon class="myproyects-delete-icon-tooltips"></delete-icon>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table id="table-list" class="table table-hover table-condenced .table-responsive">
+        <thead>
+            <tr>
+                <th ng-repeat="column in keyColumns">{{column}}</th>
+                <th class="myprojects-table-td-10">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+                
+                <td ng-repeat="td in valuesColumns"><crud-td-content-list datatd="td" datatr="project"></crud-td-content-list></td>
+                
+                <td>
+                    <edit-icon class="myproyects-edit-icon-tooltips"></edit-icon>
+                    <delete-icon class="myproyects-delete-icon-tooltips"></delete-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

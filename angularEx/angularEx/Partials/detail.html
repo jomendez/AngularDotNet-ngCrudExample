@@ -1,37 +1,43 @@
-﻿<form name="myForm">
+﻿<div ng-controller="EditOrCreateCtrl">
+    <form name="myForm">
 
-    <div class="control-group row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
-        <div class="col-md-2">Name</div>
-        <div class="col-md-8">
-            <input type="text" name="name" ng-model="project.Name" required class="form-control">
-            <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
-                Required {{myForm.name.$pristine}}
-            </span>
-        </div>
-    </div>
- 
-    <div class="control-group row myprojects-div-rows" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
-        <div class="col-md-2">Website</div>
-        <div class="col-md-8">
-            <input type="url" name="site" ng-model="project.Site" required class="form-control">
-            <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">
-                Required
-            </span>
-            <span ng-show="myForm.site.$error.url" class="help-inline">
-                Not a URL
-            </span>
-        </div>
-    </div>
- 
-    <div class="row myprojects-div-rows">
-        <div class="col-md-2">Description</div>
-        <div class="col-md-8">
-            <textarea name="description" ng-model="project.Description" class="form-control myproject-edit-textarea"></textarea>
-        </div>
-    </div>
+        <!--<div ng-repeat="item in project">
+            <crud-edit-content-list crudobj="item"></crud-edit-content-list>
+        </div>-->
 
-  <br>
-  <a href="#/" class="btn btn-default">Cancel</a>
-  <button ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-primary">Save</button>
+        <div ng-repeat="(key, item) in project" class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
+            <div class="col-md-2">{{item.key}}</div>
+            <div class="col-md-8">
+                <input type="text" name="name" ng-model="item.val" required class="form-control">
+                <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
+                    Required {{myForm.name.$pristine}}
+                </span>
+            </div>
+        </div>
 
-</form>
+        <!--<div class=" row myprojects-div-rows" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
+            <div class="col-md-2">Website</div>
+            <div class="col-md-8">
+                <input type="url" name="site" ng-model="project.Site" required class="form-control">
+                <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">
+                    Required
+                </span>
+                <span ng-show="myForm.site.$error.url" class="help-inline">
+                    Not a URL
+                </span>
+            </div>
+        </div>
+
+        <div class="row myprojects-div-rows">
+            <div class="col-md-2">Description</div>
+            <div class="col-md-8">
+                <textarea name="description" ng-model="project.Description" class="form-control myproject-edit-textarea"></textarea>
+            </div>
+        </div>-->
+
+        <br>
+        <a href ng-click="goHome()" class="btn btn-default">Cancel</a>
+        <button ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-primary">Save</button>
+
+    </form>
+</div>
