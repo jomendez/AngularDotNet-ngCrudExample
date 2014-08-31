@@ -1,27 +1,38 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="project">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-resource.min.js">
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-route.min.js">
-    </script>
-
-    <link rel="stylesheet" href="Content/style.css"/>
-
-    <title>Angular Example</title>
+    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Content/css/style.css"/>
+    <title>Angular My Projects</title>
 </head>
 <body>
+    <div class="myprojects-content">
+        <div class="panel panel-default myprojects-content-panel">
+            <div class="panel-heading">My Projects 
+                <span class="myproyects-ajax-loading-container">
+                    <img src="Content/images/ajax_loader_blue_32.gif" class="myproyects-ajax-loading-img" />
+                </span>
+            </div>
+            <div class="panel-body">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
 
-    <h2>JavaScript Projects</h2>
-    <div ng-view></div>
 
+    <!-- JS  Libraries -->
+    <script src="Scripts/lib/angular.min.js"></script>
+    <script src="Scripts/lib/angular-resource.min.js"></script>
+    <script src="Scripts/lib/angular-route.min.js"></script>
+    <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/lib/bootstrap.min.js"></script>
+    <script src="Scripts/lib/underscore-min.js"></script>
 
-
-    <script src="Scripts/Js/project.js"></script>
-    <script src="Scripts/Js/Controllers.js"></script>
-    <script src="Scripts/Js/Services.js"></script>
-    <script src="Directives/Directives.js"></script>
-    <script src="Scripts/underscore-min.js"></script>
+    <!--Custom JS code-->
+    <script src="Scripts/Js/Main.js"></script>
+    <script src="Scripts/Js/Controllers/Controllers.js"></script>
+    <script src="Scripts/Js/Services/Services.js"></script>
+    <script src="Scripts/Js/Directives/Directives.js"></script>
 </body>
 </html>

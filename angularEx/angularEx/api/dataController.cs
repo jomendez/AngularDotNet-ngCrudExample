@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace angularEx.api
 {
-      public class DataTodoData 
+      public class DataObj 
       {
          public int Id { get; set; }
          public string Description  { get; set; } 
@@ -26,59 +26,54 @@ namespace angularEx.api
         private Context context = new Context();
 
         [HttpGet]
-        public List<TodoDatas> getAllTodoItems()
+        public List<TodoDatas> getAllItems()
         {
             var persons = context.TodoData;
             return persons.ToList() != null ?  persons.ToList() : null;
         }
 
         
-        [HttpPost]
-        public TodoDatas getTodoItem(Data data)
+        [HttpGet]
+        public TodoDatas getItem([FromUri] int id)
         {
-            return context.TodoData.SingleOrDefault(p=> p.Id == data.id);
+            return context.TodoData.SingleOrDefault(p=> p.Id == id);
         }
 
         [HttpPost]
-        public bool modifyOrsaveTodoItem(DataTodoData dataTodoData)
+        public bool modifyItem(DataObj dataObj)
         {
-            if (dataTodoData == null)
+            if (dataObj == null)
                 return false;
-            if (dataTodoData.Id == 0)
-            {
-                saveTodoItem(dataTodoData);
-                return true;
-            }
 
-            TodoDatas person = context.TodoData.SingleOrDefault(p=> p.Id == dataTodoData.Id);
-            person.Name = dataTodoData.Name;
-            person.Description = dataTodoData.Description;
-            person.Site = dataTodoData.Site;
+            TodoDatas person = context.TodoData.SingleOrDefault(p=> p.Id == dataObj.Id);
+            person.Name = dataObj.Name;
+            person.Description = dataObj.Description;
+            person.Site = dataObj.Site;
             context.SaveChanges();
 
             return true;
         }
 
-        [HttpGet]
-        public bool saveTodoItem(DataTodoData dataTodoData)
+        [HttpPost]
+        public bool saveItem(DataObj dataObj)
         {
-            if (dataTodoData == null)
+            if (dataObj == null)
                 return false;
 
             TodoDatas person = new TodoDatas();
-            person.Name = dataTodoData.Name;
-            person.Description = dataTodoData.Description;
-            person.Site = dataTodoData.Site;
+            person.Name = dataObj.Name;
+            person.Description = dataObj.Description;
+            person.Site = dataObj.Site;
             context.TodoData.Add(person);
             context.SaveChanges();
 
             return true;
         }
 
-        [HttpPost]
-        public bool deleteTodoItem(Data data)
+        [HttpDelete]
+        public bool deleteItem([FromUri] int id)
         {
-            TodoDatas person = context.TodoData.SingleOrDefault(p => p.Id == data.id);
+            TodoDatas person = context.TodoData.SingleOrDefault(p => p.Id == id);
             if (person == null)
                 return false;
 

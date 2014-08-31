@@ -1,0 +1,70 @@
+﻿body {
+    
+}
+
+ div.col-md-8 > textarea {
+    height:100px;
+}
+
+.myprojects-custom-search {
+    width:100%;
+    padding-bottom: 10px;
+}
+
+.myprojects-content-panel {
+    width: 40%;
+    min-width: 358px;
+    margin: 0 auto;
+    position:relative;
+    top:30px;
+}
+
+.myprojects-content {
+    
+}
+
+#table-list {
+    width:100%;
+}
+
+.myprojects-table-td-30 {
+    width:30%;
+}
+
+
+.myprojects-table-td-70 {
+    width:70%;
+}
+
+.myprojects-table-td-10 {
+    width:10%;
+}
+
+.myproyects-add-btn {
+    padding-bottom:7px;
+    padding-top:7px;
+}
+
+a > i, .myprojects-search-icon {
+    color: #428bca;
+}
+
+.myprojects-div-rows {
+    margin-bottom:6px;
+}
+
+
+.myproyects-ajax-loading-img {
+    /*width:16px;
+    height:16px;*/
+}
+
+.myproyects-ajax-loading-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display:none;
+    z-index: 10;
+}
+
+
