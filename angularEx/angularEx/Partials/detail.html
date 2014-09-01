@@ -1,17 +1,17 @@
 ﻿<div ng-controller="EditOrCreateCtrl">
     <form name="myForm">
 
-        <!--<div ng-repeat="item in project">
-            <crud-edit-content-list crudobj="item"></crud-edit-content-list>
-        </div>-->
-
-        <div ng-repeat="(key, item) in project" class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
+        <div ng-repeat="item in project" ng-show="item.included" class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
             <div class="col-md-2">{{item.key}}</div>
-            <div class="col-md-8">
+            <div class="col-md-8" ng-show="!item.type || item.type =='string'">
                 <input type="text" name="name" ng-model="item.val" required class="form-control">
                 <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
                     Required {{myForm.name.$pristine}}
                 </span>
+            </div>
+
+            <div class="col-md-8" ng-show="item.type =='text'">
+                <textarea name="description" ng-model="item.val" class="form-control myproject-edit-textarea"></textarea>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
 
         <br>
         <a href ng-click="goHome()" class="btn btn-default">Cancel</a>
-        <button ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-primary">Save</button>
+        <button ng-click="save()" class="btn btn-primary">Save</button>
 
     </form>
 </div>

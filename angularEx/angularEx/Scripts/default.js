@@ -10,13 +10,19 @@ controller("mainWraperController", function ($scope, crudServiceApi) {
     };
 
     var dataContract = {
-        Project: {
+        Id: ["Id", "false", "int"],
+
+        text: ["Name", "false", "string"],
+        url: ["Site", "false", "string"],
+
+        Website: {
             link: {
-                text: "Name",
-                url: "Site"
+                text:["Name", "true", "string"],
+                url: ["Site", "true", "string"]
             }
         },
-        Description : "Description"
+
+        Description : ["Description", "true", "text"]
     }
 
     $scope.servContract = servicesContract;

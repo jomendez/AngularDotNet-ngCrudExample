@@ -36,12 +36,11 @@
         return val;
     }
 
-    if ($scope.id) {
+    if ($scope.id) {//edit mode
         var personId = $scope.id;
 
         ajaxLoadingService.showLoadingImg();
         crudService.getItem(personId).then(function (response) {
-           // $scope.project = [];
             $scope.project = crudService.formatResponseToDataContract(response);
             ajaxLoadingService.hideLoadingImg();
         });
@@ -53,10 +52,14 @@
                 $scope.goHome();
             });
         };
-    } else {
+    } else {//insert new mode
+        var dataContract = crudService.getDataContract();
+        var responseEmptyEstructure = crudService.parseDataContractToEmptyEsqueleton(dataContract);
+        $scope.project = crudService.formatResponseToDataContract(responseEmptyEstructure);
+
         $scope.save = function () {
             ajaxLoadingService.showLoadingImg();
-            crudService.saveItem($scope.project).then(function (data) {
+            crudService.saveItem(crudService.formatFromDataContractToObj($scope.project)).then(function (data) {
                 ajaxLoadingService.hideLoadingImg();
                 $scope.goHome();
             });

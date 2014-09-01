@@ -1,6 +1,6 @@
 ﻿angular.module('project').
 
-  directive('newButton', function () {
+directive('newButton', function () {
       return {
           restrict: 'E',
           replace: true,
@@ -8,7 +8,7 @@
       };
   }).
 
-    directive('editIcon', function () {
+directive('editIcon', function () {
     return {
         restrict: 'E',
         replace: true, link: function (scope, element, attrs, controller) {
@@ -19,7 +19,7 @@
     }).
 
 
-  directive('deleteIcon', function (deleteItemMethod) {
+directive('deleteIcon', function (deleteItemMethod) {
       return {
           restrict: 'E',
           replace: true,
@@ -32,13 +32,14 @@
       };
   }).
 
-    directive('ngCrud',['crudService', function (crudService) {
+directive('ngCrud',['crudService', function (crudService) {
       return {
           restrict: 'E',
           replace: true,
           scope: {
               serviceContract: "=servicecontract",
-              dataContract: "=datacontract"
+              dataContract: "=datacontract",
+              panelTitle: "@paneltitle"
           },
           link: function (scope, element, attrs, controllers) {
               crudService.serviceContract(scope.serviceContract);
@@ -66,10 +67,12 @@ directive("crudTdContentList",['crudService', function (crudService) {
                 
                 if (item === td) return true;
             });
-            if (typeof td == "string" && isValidDataCantract) {
-                    element.append("" + tr[td] + "");
-            } else if (typeof td == "object" && isValidDataCantract && td.link) {
-                            element.append('<a href="' + tr[td.link.url] + '" target="_blank">' + tr[td.link.text] + '</a>');
+
+            if (typeof td[0] == "string" && isValidDataCantract) {
+                element.append("" + tr[td[0]] + "");
+
+            } else if (typeof td == "object" && isValidDataCantract && td.link) {//special element link
+                       element.append('<a href="' + tr[td.link.url[0]] + '" target="_blank">' + tr[td.link.text[0]] + '</a>');
             }
 
             //<td><a ng-href="{{project.Site}}" target="_blank">{{project.Name}}</a></td>
@@ -91,7 +94,7 @@ directive("crudEditContentList", ['crudService', '$compile', function (crudServi
 
             _.each(data, function (value, index) {
 
-                var isValidDataCantract = !!_.find(dataContractValues, function (item) {
+                var isValidDataContract = !!_.find(dataContractValues, function (item) {
                     if (typeof item === "object" && item["link"]) {
                         return !!_.find(item.link, function (val) {
                                     if (val === index && index.toLowerCase() !== "id") {
@@ -105,7 +108,7 @@ directive("crudEditContentList", ['crudService', '$compile', function (crudServi
                         }
                 });
 
-                if (isValidDataCantract) {
+                if (isValidDataContract) {
 
                     content = '<div class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">' +
                               '<div class="col-md-2">' + index + '</div>' +
