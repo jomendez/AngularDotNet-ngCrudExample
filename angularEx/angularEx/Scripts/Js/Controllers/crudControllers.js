@@ -1,4 +1,4 @@
-﻿angular.module('project')
+﻿angular.module('ngCrud')
 
 .controller('mainController', function ($scope, crudService) {
         $scope.templateName = "Partials/list.html";

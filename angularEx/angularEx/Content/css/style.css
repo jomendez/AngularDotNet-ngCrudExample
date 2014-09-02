@@ -12,11 +12,11 @@
 }
 
 .myprojects-content-panel {
-    width: 40%;
+    width: 30%;
     min-width: 358px;
-    margin: 0 auto;
+    /*margin: 0 auto;
     position:relative;
-    top:30px;
+    top:30px;*/
 }
 
 .myprojects-content {

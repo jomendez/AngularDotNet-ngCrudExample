@@ -1,4 +1,4 @@
-﻿angular.module('default', ['ngRoute', 'project']).
+﻿angular.module('default', ['ngRoute', 'ngCrud']).
 
 controller("mainWraperController", function ($scope, crudServiceApi) {
     var servicesContract = {

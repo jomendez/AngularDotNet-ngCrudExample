@@ -1,4 +1,4 @@
-﻿angular.module('project', ['ngRoute'])
+﻿angular.module('ngCrud', ['ngRoute'])
 //.config(function ($routeProvider) {
 //    $routeProvider
 //      .when('/', {

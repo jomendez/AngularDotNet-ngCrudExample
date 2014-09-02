@@ -1,4 +1,4 @@
-﻿angular.module('project').
+﻿angular.module('ngCrud').
 
 directive('newButton', function () {
       return {

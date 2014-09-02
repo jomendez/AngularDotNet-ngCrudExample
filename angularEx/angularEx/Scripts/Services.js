@@ -1,4 +1,4 @@
-﻿angular.module('project').
+﻿angular.module('default').
     service("crudServiceApi", function ($http, $q, $location, ajaxLoadingService) {
         var data = {
             id: 0

@@ -5,26 +5,46 @@
     <link href="Content/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="Content/css/style.css" />
     <title>Angular My Projects</title>
+
+    <style>
+        #droppableTable {
+            width: 100%;
+            height: 100%;
+        }
+       table #droppableTable tr td {
+            width:100%;
+            height:100%;
+        }
+    </style>
 </head>
 <body ng-controller="mainWraperController">
+   
+    <div class="dragDiv" style="display:none">
+        <ng-crud servicecontract="servContract" datacontract="dataContract" paneltitle="My first crud"></ng-crud>
+    </div>
 
-    <ng-crud servicecontract="servContract" datacontract="dataContract" paneltitle="My first crud"></ng-crud>
+    <dd-list-items></dd-list-items>
+
+    <dd-drop-list-items enter="showNgCrud()"></dd-drop-list-items>
 
 
-    <!-- JS  Libraries -->
-    <script src="Scripts/lib/angular.min.js"></script>
-    <script src="Scripts/lib/angular-resource.min.js"></script>
-    <script src="Scripts/lib/angular-route.min.js"></script>
-    <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/lib/bootstrap.min.js"></script>
-    <script src="Scripts/lib/underscore-min.js"></script>
+        <!-- JS  Libraries -->
+        <script src="Scripts/lib/angular.min.js"></script>
+        <script src="Scripts/lib/angular-resource.min.js"></script>
+        <script src="Scripts/lib/angular-route.min.js"></script>
+        <script src="Scripts/lib/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/lib/jquery-ui.min.js"></script>
+        <script src="Scripts/lib/bootstrap.min.js"></script>
+        <script src="Scripts/lib/underscore-min.js"></script>
 
-    <!--Custom JS code-->
-    <script src="Scripts/default.js"></script>
-    <script src="Scripts/Js/Main.js"></script>
-    <script src="Scripts/Js/Controllers/Controllers.js"></script>
-    <script src="Scripts/Js/Services/Services.js"></script>
-    <script src="Scripts/Js/Directives/Directives.js"></script>
-    <script src="Scripts/Services.js"></script>
+        <!--App JS code-->
+        <script src="Scripts/default.js"></script>
+        <script src="Scripts/Js/Main.js"></script>
+        <script src="Scripts/Js/Controllers/crudControllers.js"></script>
+        <script src="Scripts/Js/Services/crudServices.js"></script>
+        <script src="Scripts/Js/Directives/crudDirectives.js"></script>
+        <script src="Scripts/Services.js"></script>
+        <script src="Scripts/Js/Controllers/dragDropControllers.js"></script>
+        <script src="Scripts/Js/Directives/dragDropDirectives.js"></script>
 </body>
 </html>
