@@ -126,4 +126,10 @@
                 }
             });
         }
+    }).
+
+    service("dropIncludeService", function () {
+        this.include = function (scope) {
+            scope.showNgCrud();
+        }
     });

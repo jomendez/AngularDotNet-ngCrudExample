@@ -17,17 +17,37 @@
         }
     </style>
 </head>
-<body ng-controller="mainWraperController">
+<body>
    
-    <div class="dragDiv" style="display:none">
-        <ng-crud servicecontract="servContract" datacontract="dataContract" paneltitle="My first crud"></ng-crud>
-    </div>
+    <div ng-controller="mainWraperController">
+        <div class="dragDiv" style="display:none">
+            <ng-crud servicecontract="servContract" datacontract="dataContract" paneltitle="My first crud"></ng-crud>
+        </div>
+   
+        <div id="catalog">
+            <h2>Report List</h2>
+            <div>
+                <ul>
+                    <li draggable-item>Report example 1</li>
+                    <li draggable-item>Report example 2</li>
+                    <li draggable-item>Report example 3</li>
+                </ul>
+            </div>
+        </div>
 
-    <dd-list-items></dd-list-items>
 
-    <dd-drop-list-items enter="showNgCrud()"></dd-drop-list-items>
+        <div id="cart">
+            <span id="showNgCrud" style="width:1px; height:1px" ng-click="showNgCrud()"></span>
+            <h1 class="ui-widget-header">Drag and Drop your report here</h1>
+            <div class="ui-widget-content">
+                <ul style="height:500px; width:100%" droppable-item>
 
+                    <li class="placeholder" ng-include="dropTmpl">Add your items here</li>
+                </ul>
+            </div>
+        </div>
 
+</div>
         <!-- JS  Libraries -->
         <script src="Scripts/lib/angular.min.js"></script>
         <script src="Scripts/lib/angular-resource.min.js"></script>
@@ -41,10 +61,10 @@
         <script src="Scripts/default.js"></script>
         <script src="Scripts/Js/Main.js"></script>
         <script src="Scripts/Js/Controllers/crudControllers.js"></script>
+        <script src="Scripts/Js/Controllers/dragDropControllers.js"></script>
         <script src="Scripts/Js/Services/crudServices.js"></script>
         <script src="Scripts/Js/Directives/crudDirectives.js"></script>
-        <script src="Scripts/Services.js"></script>
-        <script src="Scripts/Js/Controllers/dragDropControllers.js"></script>
         <script src="Scripts/Js/Directives/dragDropDirectives.js"></script>
+        <script src="Scripts/Services.js"></script>
 </body>
 </html>
