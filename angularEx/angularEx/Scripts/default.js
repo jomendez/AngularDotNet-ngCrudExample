@@ -1,6 +1,7 @@
 ﻿angular.module('default', ['ngRoute', 'ngCrud']).
 
-controller("mainWraperController", function ($scope, crudServiceApi) {
+controller("mainWraperController", function ($scope, crudServiceApi, configCrudService) {
+
     var servicesContract = {
         getAllItems: crudServiceApi.getAllItems,
         getItem: crudServiceApi.getItem,
@@ -25,6 +26,21 @@ controller("mainWraperController", function ($scope, crudServiceApi) {
         Description : ["Description", "true", "text"]
     }
 
-    $scope.servContract = servicesContract;
-    $scope.dataContract = dataContract;
+
+    configCrudService.setServiceContract(servicesContract);
+    configCrudService.setDataContract(dataContract);
+    //$scope.servContract = servicesContract;
+    //$scope.dataContract = dataContract;
+
+
+    var options = {};
+    options.tag = "ng-crud";
+    options.attr = {
+        paneltitle: "My first crud"
+    }
+    options.callback = function () {
+        console.log("callback alled");
+    }();
+
+    $scope.options = options;
 });

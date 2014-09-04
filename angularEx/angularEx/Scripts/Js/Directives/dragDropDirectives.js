@@ -10,7 +10,7 @@
 
     directive('draggableItem', function () {
         return {
-            restrict: 'A',//set thiis ta an A
+            restrict: 'A',
             replace: true,
             link: function (scope, element, attrs) {
 
@@ -19,28 +19,37 @@
                     helper: "clone"
                 });
             }
-            //,
-            //templateUrl: 'Partials/ddListItems.html'
+            
         };
     }).
 
-    directive('droppableItem', function ($compile) {
+    directive('droppableItem', function ($compile, $rootScope) {
         return {
             restrict: 'A',
             replace: true,
-            scope:true,
+            scope: {
+                options: "=droppableItem"
+            },
             link: function (scope, element, attrs) {
+                var options = scope.options;
 
             $(element).droppable({
                 activeClass: "ui-state-default",
                 hoverClass: "ui-state-hover",
                 accept: ":not(.ui-sortable-helper)",
                 drop: function (event, ui) {
-                    //$(this).find(".placeholder").remove();
-                    //$("<li></li>").html($(".dragDiv").html()).appendTo(this);
-                    element.append($compile('<ng-crud servicecontract="servContract" datacontract="dataContract" paneltitle="My first crud"></ng-crud>')(scope));
-                    //$('#showNgCrud').click();
-                    //$(this).find(".dragDiv").show();
+
+                    //_.each(options.attr, function (value, index) {
+                    //    scope[index] = $compile(value)(scope);
+                    //});
+
+                    var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
+                    htmlBuilder.attr(options.attr);
+                    var html = $(htmlBuilder)[0];
+                    element.append($compile(html)(scope));
+
+                    options.callback;
+                 
                 }
             }).sortable({
                 items: "li:not(.placeholder)",
@@ -51,8 +60,6 @@
      
 
             }
-            //,
-            //templateUrl: 'Partials/ddDropListItemsInternal.html'
         };
     });
 

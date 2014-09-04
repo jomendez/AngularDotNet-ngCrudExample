@@ -12,9 +12,10 @@
 }
 
 .myprojects-content-panel {
+    min-width: 400px;
+    /*
     width: 30%;
-    min-width: 358px;
-    /*margin: 0 auto;
+    margin: 0 auto;
     position:relative;
     top:30px;*/
 }
@@ -60,11 +61,12 @@ a > i, .myprojects-search-icon {
 }
 
 .myproyects-ajax-loading-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    display:none;
+    position: relative;
+    left: 2px;
+    top: -27px;
+    display: none;
     z-index: 10;
+    float: right;
 }
 
 

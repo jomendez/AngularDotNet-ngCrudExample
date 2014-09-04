@@ -20,9 +20,9 @@
 <body>
    
     <div ng-controller="mainWraperController">
-        <div class="dragDiv" style="display:none">
+        <!--<div class="dragDiv" style="display:none">
             <ng-crud servicecontract="servContract" datacontract="dataContract" paneltitle="My first crud"></ng-crud>
-        </div>
+        </div>-->
    
         <div id="catalog">
             <h2>Report List</h2>
@@ -35,19 +35,14 @@
             </div>
         </div>
 
+        
+        <div style="width: 1211px;">
+            <div style="height:400px; width:600px; border:1px #ccc solid; float:left" droppable-item="options"></div>
+            <div style="height:400px; width:600px; border:1px #ccc solid; float:right" droppable-item="options"></div>
+            <div style="height:400px; width:600px; border:1px #ccc solid; float:left" droppable-item="options"></div>
+            <div style="height:400px; width:600px; border:1px #ccc solid; float:right" droppable-item="options"></div>
+        </div> 
 
-        <div id="cart">
-            <span id="showNgCrud" style="width:1px; height:1px" ng-click="showNgCrud()"></span>
-            <h1 class="ui-widget-header">Drag and Drop your report here</h1>
-            <div class="ui-widget-content">
-                <ul style="height:500px; width:100%" droppable-item>
-
-                    <li class="placeholder" ng-include="dropTmpl">Add your items here</li>
-                </ul>
-            </div>
-        </div>
-
-</div>
         <!-- JS  Libraries -->
         <script src="Scripts/lib/angular.min.js"></script>
         <script src="Scripts/lib/angular-resource.min.js"></script>

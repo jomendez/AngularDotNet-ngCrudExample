@@ -32,7 +32,7 @@ directive('deleteIcon', function (deleteItemMethod) {
       };
   }).
 
-directive('ngCrud',['crudService', function (crudService) {
+directive('ngCrud', ['crudService', 'configCrudService', function (crudService, configCrudService) {
       return {
           restrict: 'E',
           replace: true,
@@ -42,8 +42,12 @@ directive('ngCrud',['crudService', function (crudService) {
               panelTitle: "@paneltitle"
           },
           link: function (scope, element, attrs, controllers) {
-              crudService.serviceContract(scope.serviceContract);
-              crudService.setDataContract(scope.dataContract);
+
+              var sc = configCrudService.getServiceContract();
+              var dc = configCrudService.getDataContract();
+
+              crudService.serviceContract(sc);
+              crudService.setDataContract(dc);
           },
           templateUrl: '../../Partials/main.html'
       };
@@ -77,54 +81,6 @@ directive("crudTdContentList",['crudService', function (crudService) {
 
             //<td><a ng-href="{{project.Site}}" target="_blank">{{project.Name}}</a></td>
             //  <td>{{project.Description}}</td>
-        }
-    };
-}]).
-
-directive("crudEditContentList", ['crudService', '$compile', function (crudService, $compile) {
-    return {
-        restrict: 'E',
-        scope: {
-            crudobj: "=crudobj"
-        },
-        template: function (scope, element, attrs, controllers) {
-            var dataContractValues = crudService.getDataContractValues();
-
-            var data = scope.crudobj;
-
-            _.each(data, function (value, index) {
-
-                var isValidDataContract = !!_.find(dataContractValues, function (item) {
-                    if (typeof item === "object" && item["link"]) {
-                        return !!_.find(item.link, function (val) {
-                                    if (val === index && index.toLowerCase() !== "id") {
-                                        return true;
-                                    }
-                                });
-                    }
-
-                        if (item === index && index.toLowerCase() !== "id") {
-                            return true;
-                        }
-                });
-
-                if (isValidDataContract) {
-
-                    content = '<div class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">' +
-                              '<div class="col-md-2">' + index + '</div>' +
-                              '<div class="col-md-8">' +
-                              '<input type="text" name="name" ng-model="' + data[index] + '" required class="form-control">' +
-                              '<span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">' +
-                              'Required {{myForm.name.$pristine}}' +
-                              '</span></div></div>';
-                                       
-                    element.replaceWith(content);
-
-
-                }
-            });
-            
-
         }
     };
 }]);

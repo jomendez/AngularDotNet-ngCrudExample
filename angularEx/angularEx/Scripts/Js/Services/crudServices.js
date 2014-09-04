@@ -128,8 +128,36 @@
         }
     }).
 
-    service("dropIncludeService", function () {
-        this.include = function (scope) {
-            scope.showNgCrud();
-        }
-    });
+     factory("configCrudService", function () {
+
+         var contracts = function () {
+             var serviceContract = {};
+             var dataContract = {};
+
+             var setServiceContract = function (data) {
+                 serviceContract = data;
+             }
+
+             var setDataContract = function (data) {
+                 dataContract = data;
+             }
+
+             var getServiceContract = function () {
+                 return serviceContract;
+             }
+
+             var getDataContract = function () {
+                 return dataContract;
+             }
+
+             return {
+                 setServiceContract: setServiceContract,
+                 setDataContract: setDataContract,
+                 getServiceContract: getServiceContract,
+                 getDataContract: getDataContract
+             }
+
+         }();
+
+         return contracts;
+     });

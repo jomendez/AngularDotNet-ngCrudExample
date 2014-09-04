@@ -118,9 +118,6 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\images\ajax_loader_blue_32.gif" />
     <Content Include="Default.html" />
-    <Content Include="Partials\ddDropListItems.html" />
-    <Content Include="Partials\ddDropListItemsInternal.html" />
-    <Content Include="Partials\ddListItems.html" />
     <Content Include="Partials\main.html" />
     <Content Include="Scripts\default.js" />
     <Content Include="Scripts\Js\Controllers\dragDropControllers.js" />
