@@ -48,7 +48,7 @@
                     var html = $(htmlBuilder)[0];
                     element.append($compile(html)(scope));
 
-                    options.callback;
+                    options.callback();
                  
                 }
             }).sortable({

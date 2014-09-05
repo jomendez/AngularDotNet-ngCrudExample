@@ -1,4 +1,4 @@
-﻿angular.module('default', ['ngRoute', 'ngCrud']).
+﻿angular.module('default', ['ngCrud']).
 
 controller("mainWraperController", function ($scope, crudServiceApi, configCrudService) {
 
@@ -29,8 +29,6 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
 
     configCrudService.setServiceContract(servicesContract);
     configCrudService.setDataContract(dataContract);
-    //$scope.servContract = servicesContract;
-    //$scope.dataContract = dataContract;
 
 
     var options = {};
@@ -40,7 +38,7 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
     }
     options.callback = function () {
         console.log("callback alled");
-    }();
+    };
 
     $scope.options = options;
 });

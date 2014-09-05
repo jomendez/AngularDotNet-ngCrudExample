@@ -141,7 +141,7 @@
     <Content Include="Scripts\lib\jquery-1.9.1.js" />
     <Content Include="Scripts\lib\jquery-1.9.1.min.js" />
     <Content Include="Scripts\Js\Controllers\crudControllers.js" />
-    <Content Include="Scripts\Js\Main.js" />
+    <Content Include="Scripts\Js\main.js" />
     <Content Include="Scripts\Js\Services\crudServices.js" />
     <Content Include="Scripts\lib\jquery-ui.min.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
