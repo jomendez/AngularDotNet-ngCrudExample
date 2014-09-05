@@ -1,8 +1,9 @@
-﻿<div ng-controller="EditOrCreateCtrl">
+﻿<div ng-controller="detailController">
     <form name="myForm">
 
-        <div ng-repeat="item in project" ng-show="item.included" class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
+        <div ng-repeat="item in crud" ng-show="item.included" class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
             <div class="col-md-2">{{item.key}}</div>
+
             <div class="col-md-8" ng-show="!item.type || item.type =='string'">
                 <input type="text" name="name" ng-model="item.val" required class="form-control">
                 <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">
@@ -15,27 +16,6 @@
             </div>
         </div>
 
-        <!--<div class=" row myprojects-div-rows" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
-            <div class="col-md-2">Website</div>
-            <div class="col-md-8">
-                <input type="url" name="site" ng-model="project.Site" required class="form-control">
-                <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">
-                    Required
-                </span>
-                <span ng-show="myForm.site.$error.url" class="help-inline">
-                    Not a URL
-                </span>
-            </div>
-        </div>
-
-        <div class="row myprojects-div-rows">
-            <div class="col-md-2">Description</div>
-            <div class="col-md-8">
-                <textarea name="description" ng-model="project.Description" class="form-control myproject-edit-textarea"></textarea>
-            </div>
-        </div>-->
-
-        <br>
         <a href ng-click="goHome()" class="btn btn-default">Cancel</a>
         <button ng-click="save()" class="btn btn-primary">Save</button>
 

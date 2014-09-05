@@ -1,4 +1,4 @@
-﻿<div ng-controller="ListCtrl">
+﻿<div ng-controller="listController">
     <div class="input-group myprojects-custom-search">
         <span class="input-group-addon "><i class="glyphicon glyphicon-search myprojects-search-icon"></i></span>
         <input type="text" ng-model="search" class="search-query form-control" placeholder="Search">
@@ -16,9 +16,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+            <tr ng-repeat="crud in cruds | filter:search | orderBy:'name'">
                 
-                <td ng-repeat="td in valuesColumns"><crud-td-content-list datatd="td" datatr="project"></crud-td-content-list></td>
+                <td ng-repeat="td in valuesColumns"><crud-td-content-list datatd="td" datatr="crud"></crud-td-content-list></td>
                 
                 <td>
                     <edit-icon class="myproyects-edit-icon-tooltips"></edit-icon>

@@ -45,7 +45,8 @@
 
                     var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
                     htmlBuilder.attr(options.attr);
-                    var html = $(htmlBuilder)[0];
+
+                    var html = $("<div></div>").append(htmlBuilder).html();
                     element.append($compile(html)(scope));
 
                     options.callback();

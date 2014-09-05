@@ -11,35 +11,35 @@ directive('newButton', function () {
 directive('editIcon', function () {
     return {
         restrict: 'E',
-        replace: true, link: function (scope, element, attrs, controller) {
+        replace: true,
+        link: function (scope, element, attrs, controller) {
             $(element).tooltip({ title: "Edit" });
         },
-        template: '<a href ng-click="edit(project.Id)"><i class="glyphicon glyphicon-edit"></i></a>'
+        template: '<a href ng-click="edit(crud.Id)"><i class="glyphicon glyphicon-edit"></i></a>'
     };
     }).
 
-
-directive('deleteIcon', function (deleteItemMethod) {
+directive('deleteIcon', function (deleteItemService) {
       return {
           restrict: 'E',
           replace: true,
           scope: true,
           link: function (scope, element, attrs, controller) {
-              scope.deleteItem = function (id, _scope) { return deleteItemMethod.deleteItem(id, _scope); }
+              scope.deleteItem = function (id, _scope) { return deleteItemService.deleteItem(id, _scope); }
               $(element).tooltip({ title: "Remove" });
           },
-          template: '<a href ng-click="deleteItem(project.Id, this)"><i class="glyphicon glyphicon-remove"></i></a>'
+          template: '<a href ng-click="deleteItem(crud.Id, this)"><i class="glyphicon glyphicon-remove"></i></a>'
       };
   }).
 
 directive('ngCrud', ['crudService', 'configCrudService', function (crudService, configCrudService) {
       return {
-          restrict: 'E',
+          restrict: 'A',
           replace: true,
           scope: {
-              serviceContract: "=servicecontract",
-              dataContract: "=datacontract",
-              panelTitle: "@paneltitle"
+              //serviceContract: "=servicecontract",
+              //dataContract: "=datacontract",
+              //panelTitle: "@paneltitle"
           },
           link: function (scope, element, attrs, controllers) {
 
@@ -53,7 +53,7 @@ directive('ngCrud', ['crudService', 'configCrudService', function (crudService, 
       };
     }]).
 
-directive("crudTdContentList",['crudService', function (crudService) {
+directive("crudTdContentList", ['crudService', function (crudService) {
     return {
         restrict: 'E',
         replace: true,
@@ -78,9 +78,6 @@ directive("crudTdContentList",['crudService', function (crudService) {
             } else if (typeof td == "object" && isValidDataCantract && td.link) {//special element link
                        element.append('<a href="' + tr[td.link.url[0]] + '" target="_blank">' + tr[td.link.text[0]] + '</a>');
             }
-
-            //<td><a ng-href="{{project.Site}}" target="_blank">{{project.Name}}</a></td>
-            //  <td>{{project.Description}}</td>
         }
     };
 }]);

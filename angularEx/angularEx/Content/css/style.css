@@ -63,7 +63,7 @@ a > i, .myprojects-search-icon {
 .myproyects-ajax-loading-container {
     position: relative;
     left: 2px;
-    top: -27px;
+    top: -5px;
     display: none;
     z-index: 10;
     float: right;

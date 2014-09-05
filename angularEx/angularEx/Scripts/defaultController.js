@@ -26,15 +26,23 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
         Description : ["Description", "true", "text"]
     }
 
+    var data = {
+        servicesContract: servicesContract,
+        dataContract: dataContract,
+        panelTitle: "My Crud",
+        options: {}
+    }
 
-    configCrudService.setServiceContract(servicesContract);
-    configCrudService.setDataContract(dataContract);
+    configCrudService.setContracts(data);
+
+    //configCrudService.setServiceContract(servicesContract);
+    //configCrudService.setDataContract(dataContract);
 
 
     var options = {};
-    options.tag = "ng-crud";
+    options.tag = "div";
     options.attr = {
-        paneltitle: "My first crud"
+        "ng-crud": ""
     }
     options.callback = function () {
         console.log("callback alled");

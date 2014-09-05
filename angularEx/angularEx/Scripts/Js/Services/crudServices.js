@@ -1,4 +1,4 @@
-﻿angular.module('ngCrud').
+﻿angular.module("ngCrud").
 
     service("ajaxLoadingService", function () {
         this.showLoadingImg = function () {
@@ -17,6 +17,7 @@
            
             if (!servContract || !(servContract.getAllItems || servContract.getItem || servContract.saveItem || servContract.modifyItem || servContract.deleteItem)) {
                 throw new Error("You are not implementing all services: getAllItems, getItem, saveItem, modifyItem, deleteItem");
+                return;
             }
             self.getAllItems = servContract.getAllItems;
             self.getItem = servContract.getItem;
@@ -114,7 +115,7 @@
 
     }).
 
-    service("deleteItemMethod", function ($location, crudService) {
+    service("deleteItemService", function ($location, crudService) {
 
         this.deleteItem = function (id, scope) {
             var idOfItemToDelete = id ? id : personId;
@@ -128,11 +129,13 @@
         }
     }).
 
-     factory("configCrudService", function () {
+    factory("configCrudService", function () {
 
          var contracts = function () {
              var serviceContract = {};
              var dataContract = {};
+             var panelTitle = "";
+
 
              var setServiceContract = function (data) {
                  serviceContract = data;
@@ -150,14 +153,44 @@
                  return dataContract;
              }
 
+             var setContracts = function (data) {
+                 if (!data)
+                     return;
+
+                 serviceContract = data.servicesContract;
+                 dataContract = data.dataContract;
+                 panelTitle = data.panelTitle;
+             }
+
              return {
                  setServiceContract: setServiceContract,
                  setDataContract: setDataContract,
                  getServiceContract: getServiceContract,
-                 getDataContract: getDataContract
+                 getDataContract: getDataContract,
+                 setContracts: setContracts
              }
 
          }();
 
          return contracts;
-     });
+    }).
+
+    service("editOrInsertService", function () {
+
+        this.getKeyFromObj = function (obj) {
+            if (!obj)
+                return null;
+
+            var key = _.keys(obj)[0];
+            return key;
+        };
+
+        this.getValFromObj = function (obj) {
+            if (!obj)
+                return null;
+
+            var val = _.values(obj)[0];
+            return val;
+        }
+
+    });

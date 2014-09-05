@@ -18,36 +18,24 @@
         }
     })
 
-.controller('EditOrCreateCtrl', function ($scope, crudService, ajaxLoadingService) {
+.controller('detailController', function ($scope, crudService, ajaxLoadingService, editOrInsertService) {
 
-    $scope.getKeyFromObj = function (obj) {
-        if (!obj)
-            return null;
+    $scope.getKeyFromObj = editOrInsertService.getKeyFromObj;
 
-        var key = _.keys(obj)[0];
-        return key;
-    }
-
-    $scope.getValFromObj = function (obj) {
-        if (!obj)
-            return null;
-
-        var val = _.values(obj)[0];
-        return val;
-    }
+    $scope.getValFromObj = editOrInsertService.getValFromObj;
 
     if ($scope.id) {//edit mode
         var personId = $scope.id;
 
         ajaxLoadingService.showLoadingImg();
         crudService.getItem(personId).then(function (response) {
-            $scope.project = crudService.formatResponseToDataContract(response);
+            $scope.crud = crudService.formatResponseToDataContract(response);
             ajaxLoadingService.hideLoadingImg();
         });
 
         $scope.save = function () {
             ajaxLoadingService.showLoadingImg();
-            crudService.modifyItem(crudService.formatFromDataContractToObj($scope.project)).then(function (data) {
+            crudService.modifyItem(crudService.formatFromDataContractToObj($scope.crud)).then(function (data) {
                 ajaxLoadingService.hideLoadingImg();
                 $scope.goHome();
             });
@@ -55,11 +43,11 @@
     } else {//insert new mode
         var dataContract = crudService.getDataContract();
         var responseEmptyEstructure = crudService.parseDataContractToEmptyEsqueleton(dataContract);
-        $scope.project = crudService.formatResponseToDataContract(responseEmptyEstructure);
+        $scope.crud = crudService.formatResponseToDataContract(responseEmptyEstructure);
 
         $scope.save = function () {
             ajaxLoadingService.showLoadingImg();
-            crudService.saveItem(crudService.formatFromDataContractToObj($scope.project)).then(function (data) {
+            crudService.saveItem(crudService.formatFromDataContractToObj($scope.crud)).then(function (data) {
                 ajaxLoadingService.hideLoadingImg();
                 $scope.goHome();
             });
@@ -69,7 +57,7 @@
 
 })
 
-.controller('ListCtrl', ['$scope', 'crudService', 'ajaxLoadingService', function ($scope, crudService, ajaxLoadingService) {
+.controller('listController', ['$scope', 'crudService', 'ajaxLoadingService', function ($scope, crudService, ajaxLoadingService) {
     var dataContract = crudService.getDataContract();
     $scope.keyColumns = crudService.getDataContractKeys();
     $scope.valuesColumns = crudService.getDataContractValues();
@@ -78,7 +66,7 @@
     
     ajaxLoadingService.showLoadingImg();
     crudService.refreshView().then(function (response) {
-            $scope.projects = response;
+            $scope.cruds = response;
             ajaxLoadingService.hideLoadingImg();
         });
        
