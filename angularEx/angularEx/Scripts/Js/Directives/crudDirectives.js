@@ -1,16 +1,16 @@
-﻿angular.module('ngCrud').
+﻿angular.module("ngCrud").
 
-directive('newButton', function () {
+directive("newButton", function () {
       return {
-          restrict: 'E',
+          restrict: "E",
           replace: true,
           template: '<a href ng-click="new()"><i class="label label-primary">Add New</i></a>'
       };
   }).
 
-directive('editIcon', function () {
+directive("editIcon", function () {
     return {
-        restrict: 'E',
+        restrict: "E",
         replace: true,
         link: function (scope, element, attrs, controller) {
             $(element).tooltip({ title: "Edit" });
@@ -19,9 +19,9 @@ directive('editIcon', function () {
     };
     }).
 
-directive('deleteIcon', function (deleteItemService) {
+directive("deleteIcon", function (deleteItemService) {
       return {
-          restrict: 'E',
+          restrict: "E",
           replace: true,
           scope: true,
           link: function (scope, element, attrs, controller) {
@@ -32,30 +32,31 @@ directive('deleteIcon', function (deleteItemService) {
       };
   }).
 
-directive('ngCrud', ['crudService', 'configCrudService', function (crudService, configCrudService) {
+directive("ngCrud", ["crudService", "configCrudService", function (crudService, configCrudService) {
       return {
-          restrict: 'A',
+          restrict: "A",
           replace: true,
           scope: {
-              //serviceContract: "=servicecontract",
+              //servicesContract: "=servicesContract",
               //dataContract: "=datacontract",
-              //panelTitle: "@paneltitle"
+              key: "@ngCrud"
           },
           link: function (scope, element, attrs, controllers) {
 
-              var sc = configCrudService.getServiceContract();
-              var dc = configCrudService.getDataContract();
+              var sc = configCrudService.getservicesContract(scope.key);
+              var dc = configCrudService.getDataContract(scope.key);
+              scope.panelTitle = configCrudService.getPanelTitle(scope.key);
 
-              crudService.serviceContract(sc);
+              crudService.servicesContract(sc);
               crudService.setDataContract(dc);
           },
-          templateUrl: '../../Partials/main.html'
+          templateUrl: "../../Partials/main.html"
       };
     }]).
 
-directive("crudTdContentList", ['crudService', function (crudService) {
+directive("crudTdContentList", ["crudService", function (crudService) {
     return {
-        restrict: 'E',
+        restrict: "E",
         replace: true,
         scope: {
             dataTd: "=datatd",

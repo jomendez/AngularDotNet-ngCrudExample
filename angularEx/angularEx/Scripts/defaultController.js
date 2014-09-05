@@ -1,4 +1,4 @@
-﻿angular.module('default', ['ngCrud']).
+﻿angular.module("default", ["ngCrud"]).
 
 controller("mainWraperController", function ($scope, crudServiceApi, configCrudService) {
 
@@ -27,6 +27,7 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
     }
 
     var data = {
+        ngCrud: "firstCrudIdentifier",
         servicesContract: servicesContract,
         dataContract: dataContract,
         panelTitle: "My Crud",
@@ -35,18 +36,24 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
 
     configCrudService.setContracts(data);
 
-    //configCrudService.setServiceContract(servicesContract);
-    //configCrudService.setDataContract(dataContract);
 
+    //options for the droppable directive
+    var dragAndDropOptions = {
+        crudKey: {
+            data: data,
+            tag: "div",
+            attr: {
+                "ng-crud": "firstCrudIdentifier"
+            },
+            onDropCallback: function () {
+                console.log("callback alled");
+            },
+        }
 
-    var options = {};
-    options.tag = "div";
-    options.attr = {
-        "ng-crud": ""
     }
-    options.callback = function () {
-        console.log("callback alled");
-    };
 
-    $scope.options = options;
+
+  
+
+    $scope.options = dragAndDropOptions;
 });

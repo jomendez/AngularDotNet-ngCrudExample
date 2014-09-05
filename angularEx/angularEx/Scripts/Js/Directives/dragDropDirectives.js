@@ -1,16 +1,16 @@
-﻿angular.module('ngCrud').
+﻿angular.module("ngCrud").
 
-    directive('ddDropListItems', function () {
+    directive("ddDropListItems", function () {
         return {
-            restrict: 'E',
+            restrict: "E",
             replace: true,
-            templateUrl: 'Partials/ddDropListItems.html'
+            templateUrl: "Partials/ddDropListItems.html"
         };
     }).
 
-    directive('draggableItem', function () {
+    directive("draggableItem", function () {
         return {
-            restrict: 'A',
+            restrict: "A",
             replace: true,
             link: function (scope, element, attrs) {
 
@@ -23,42 +23,50 @@
         };
     }).
 
-    directive('droppableItem', function ($compile, $rootScope) {
+    directive("droppableItem", function ($compile, configCrudService) {
         return {
-            restrict: 'A',
+            restrict: "A",
             replace: true,
             scope: {
                 options: "=droppableItem"
             },
             link: function (scope, element, attrs) {
-                var options = scope.options;
 
-            $(element).droppable({
-                activeClass: "ui-state-default",
-                hoverClass: "ui-state-hover",
-                accept: ":not(.ui-sortable-helper)",
-                drop: function (event, ui) {
+                $(element).droppable({
+                    activeClass: "ui-state-default",
+                    hoverClass: "ui-state-hover",
+                    accept: ":not(.ui-sortable-helper)",
+                    drop: function (event, ui) {
 
-                    //_.each(options.attr, function (value, index) {
-                    //    scope[index] = $compile(value)(scope);
-                    //});
+                        var key = ui.draggable.attr("draggable-item");
+                        var options = scope.options[key];
 
-                    var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
-                    htmlBuilder.attr(options.attr);
+                        if (typeof options == "undefined")
+                            return;
 
-                    var html = $("<div></div>").append(htmlBuilder).html();
-                    element.append($compile(html)(scope));
+                        configCrudService.setContracts(options.data);
+                        var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
 
-                    options.callback();
-                 
-                }
-            }).sortable({
-                items: "li:not(.placeholder)",
-                sort: function () {
-                    $(this).removeClass("ui-state-default");
-                }
-            });
-     
+                        if (options.attr)
+                        htmlBuilder.attr(options.attr);
+
+                        var html = $("<div></div>").append(htmlBuilder).html();
+                        element.append($compile(html)(scope));
+
+                        if (typeof options.callback != "undefined")
+                            options.onDropCallback();
+
+                    }
+                });
+
+            //    .sortable({
+            //    items: "li:not(.placeholder)",
+            //    sort: function () {
+            //        $(this).removeClass("ui-state-default");
+            //    }
+            //});
+                
+                //element.children().remove()
 
             }
         };

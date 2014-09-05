@@ -69,4 +69,6 @@ a > i, .myprojects-search-icon {
     float: right;
 }
 
-
+.ng-crud-panel-body {
+    overflow-x: overlay;
+}

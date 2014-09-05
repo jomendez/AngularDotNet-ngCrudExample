@@ -13,7 +13,7 @@
     service("crudService", function ($http, $q, $location, ajaxLoadingService) {
 
         var self = this;
-        this.serviceContract = function (servContract) {
+        this.servicesContract = function (servContract) {
            
             if (!servContract || !(servContract.getAllItems || servContract.getItem || servContract.saveItem || servContract.modifyItem || servContract.deleteItem)) {
                 throw new Error("You are not implementing all services: getAllItems, getItem, saveItem, modifyItem, deleteItem");
@@ -101,8 +101,8 @@
         this.parseDataContractToEmptyEsqueleton = function (obj) {
             var result = {};
             _.each(obj, function (item) {
-                if (typeof item == "object" && item['link']) {
-                    _.each(item['link'], function (val) {
+                if (typeof item == "object" && item["link"]) {
+                    _.each(item["link"], function (val) {
                         result[val[0]] = "";
                     })
                 } else {
@@ -132,42 +132,36 @@
     factory("configCrudService", function () {
 
          var contracts = function () {
-             var serviceContract = {};
+             var servicesContract = {};
              var dataContract = {};
-             var panelTitle = "";
-
-
-             var setServiceContract = function (data) {
-                 serviceContract = data;
+             var panelTitle = {};
+             
+             var getservicesContract = function (ngCrud) {
+                 return servicesContract[ngCrud];
              }
 
-             var setDataContract = function (data) {
-                 dataContract = data;
+             var getDataContract = function (ngCrud) {
+                 return dataContract[ngCrud];
              }
 
-             var getServiceContract = function () {
-                 return serviceContract;
-             }
-
-             var getDataContract = function () {
-                 return dataContract;
+             var getPanelTitle = function (ngCrud) {
+                 return panelTitle[ngCrud];
              }
 
              var setContracts = function (data) {
                  if (!data)
                      return;
 
-                 serviceContract = data.servicesContract;
-                 dataContract = data.dataContract;
-                 panelTitle = data.panelTitle;
+                 servicesContract[data.ngCrud] = data.servicesContract;
+                 dataContract[data.ngCrud] = data.dataContract;
+                 panelTitle[data.ngCrud] = data.panelTitle;
              }
 
              return {
-                 setServiceContract: setServiceContract,
-                 setDataContract: setDataContract,
-                 getServiceContract: getServiceContract,
+                 getservicesContract: getservicesContract,
                  getDataContract: getDataContract,
-                 setContracts: setContracts
+                 setContracts: setContracts,
+                 getPanelTitle: getPanelTitle
              }
 
          }();

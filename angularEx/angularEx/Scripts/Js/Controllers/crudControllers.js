@@ -1,6 +1,6 @@
-﻿angular.module('ngCrud')
+﻿angular.module("ngCrud")
 
-.controller('mainController', function ($scope, crudService) {
+.controller("mainController", function ($scope, crudService) {
         $scope.templateName = "Partials/list.html";
 
         $scope.edit = function (id) {
@@ -18,7 +18,7 @@
         }
     })
 
-.controller('detailController', function ($scope, crudService, ajaxLoadingService, editOrInsertService) {
+.controller("detailController", function ($scope, crudService, ajaxLoadingService, editOrInsertService) {
 
     $scope.getKeyFromObj = editOrInsertService.getKeyFromObj;
 
@@ -57,7 +57,7 @@
 
 })
 
-.controller('listController', ['$scope', 'crudService', 'ajaxLoadingService', function ($scope, crudService, ajaxLoadingService) {
+.controller("listController", ["$scope", "crudService", "ajaxLoadingService", function ($scope, crudService, ajaxLoadingService) {
     var dataContract = crudService.getDataContract();
     $scope.keyColumns = crudService.getDataContractKeys();
     $scope.valuesColumns = crudService.getDataContractValues();
