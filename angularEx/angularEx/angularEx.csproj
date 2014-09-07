@@ -118,6 +118,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\images\ajax_loader_blue_32.gif" />
     <Content Include="Default.html" />
+    <Content Include="Partials\ajaxLoading.html" />
     <Content Include="Partials\main.html" />
     <Content Include="Scripts\defaultController.js" />
     <Content Include="Scripts\Js\Directives\crudDirectives.js" />
@@ -164,12 +165,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409070602333_InitialMigration.cs" />
+    <Compile Include="Migrations\201409070602333_InitialMigration.Designer.cs">
+      <DependentUpon>201409070602333_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Context.cs" />
     <Compile Include="Model\TodoDatas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201409070602333_InitialMigration.resx">
+      <DependentUpon>201409070602333_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

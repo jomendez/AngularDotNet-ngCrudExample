@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace angularEx.Model
 {
-    public class TodoDatas
+    public class ExampleDatas
     {
         public int Id { get; set; }
         public string Name { get; set; }

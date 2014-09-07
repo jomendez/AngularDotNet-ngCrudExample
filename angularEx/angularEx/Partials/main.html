@@ -1,14 +1,14 @@
 ﻿<div class="myprojects-content" >
    
-        <div class="panel panel-default myprojects-content-panel">
-            <div class="panel-heading">
-                {{panelTitle}}
-                <span class="myproyects-ajax-loading-container">
-                    <img src="Content/images/ajax_loader_blue_32.gif" class="myproyects-ajax-loading-img" />
-                </span>
-            </div>
-            <div class="panel-body ng-crud-panel-body" ng-controller="mainController">
-                <div ng-include="templateName"></div>
-            </div>
+    <div class="panel panel-default myprojects-content-panel" ng-controller="mainController">
+        <div class="panel-heading">
+            {{panelTitle}}
+            &nbsp;
+            <span class="myproyects-ajax-loading-container" ng-include="ajaxLoading">
+            </span>
         </div>
+        <div class="panel-body ng-crud-panel-body">
+            <div ng-include="templateName"></div>
+        </div>
+    </div>
 </div>

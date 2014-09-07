@@ -13,9 +13,6 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
     var dataContract = {
         Id: ["Id", "false", "int"],
 
-        text: ["Name", "false", "string"],
-        url: ["Site", "false", "string"],
-
         Website: {
             link: {
                 text:["Name", "true", "string"],
@@ -26,15 +23,16 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
         Description : ["Description", "true", "text"]
     }
 
+    //data for the crud
     var data = {
         ngCrud: "firstCrudIdentifier",
         servicesContract: servicesContract,
         dataContract: dataContract,
-        panelTitle: "My Crud",
+        panelTitle: "",
         options: {}
     }
 
-    configCrudService.setContracts(data);
+    //configCrudService.setContracts(data);
 
 
     //options for the droppable directive
@@ -45,9 +43,19 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
             attr: {
                 "ng-crud": "firstCrudIdentifier"
             },
+            cleanerSelectorID:"cleanContent1",
             onDropCallback: function () {
                 console.log("callback alled");
-            },
+            }
+        },
+
+        customDir: {
+            data: data,
+            tag: "delete-Icon",
+            cleanerSelectorID: "cleanContent1",
+            onDropCallback: function () {
+                console.log("lili");
+            }
         }
 
     }

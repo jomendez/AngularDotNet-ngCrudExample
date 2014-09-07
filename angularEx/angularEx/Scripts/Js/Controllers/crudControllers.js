@@ -1,7 +1,8 @@
 ﻿angular.module("ngCrud")
 
 .controller("mainController", function ($scope, crudService) {
-        $scope.templateName = "Partials/list.html";
+    $scope.templateName = "Partials/list.html";
+    $scope.ajaxLoading = "";
 
         $scope.edit = function (id) {
             $scope.templateName = "Partials/detail.html";
@@ -16,9 +17,18 @@
         $scope.goHome = function () {
             $scope.templateName = "Partials/list.html";
         }
+
+        
+        $scope.showLoadingImg = function () {
+            $scope.ajaxLoading = "Partials/ajaxLoading.html";
+        }
+
+        $scope.hideLoadingImg = function () {
+            $scope.ajaxLoading = "";
+        }
     })
 
-.controller("detailController", function ($scope, crudService, ajaxLoadingService, editOrInsertService) {
+.controller("detailController", function ($scope, crudService, editOrInsertService) {
 
     $scope.getKeyFromObj = editOrInsertService.getKeyFromObj;
 
@@ -27,16 +37,16 @@
     if ($scope.id) {//edit mode
         var personId = $scope.id;
 
-        ajaxLoadingService.showLoadingImg();
+        $scope.showLoadingImg();
         crudService.getItem(personId).then(function (response) {
             $scope.crud = crudService.formatResponseToDataContract(response);
-            ajaxLoadingService.hideLoadingImg();
+            $scope.hideLoadingImg();
         });
 
         $scope.save = function () {
-            ajaxLoadingService.showLoadingImg();
+            $scope.showLoadingImg();
             crudService.modifyItem(crudService.formatFromDataContractToObj($scope.crud)).then(function (data) {
-                ajaxLoadingService.hideLoadingImg();
+                $scope.hideLoadingImg();
                 $scope.goHome();
             });
         };
@@ -46,9 +56,9 @@
         $scope.crud = crudService.formatResponseToDataContract(responseEmptyEstructure);
 
         $scope.save = function () {
-            ajaxLoadingService.showLoadingImg();
+            $scope.showLoadingImg();
             crudService.saveItem(crudService.formatFromDataContractToObj($scope.crud)).then(function (data) {
-                ajaxLoadingService.hideLoadingImg();
+                $scope.hideLoadingImg();
                 $scope.goHome();
             });
         };
@@ -64,10 +74,10 @@
 
     $scope.dataContract = dataContract;
     
-    ajaxLoadingService.showLoadingImg();
+    $scope.showLoadingImg();
     crudService.refreshView().then(function (response) {
             $scope.cruds = response;
-            ajaxLoadingService.hideLoadingImg();
+            $scope.hideLoadingImg();
         });
        
     }]);

@@ -64,7 +64,6 @@ a > i, .myprojects-search-icon {
     position: relative;
     left: 2px;
     top: -5px;
-    display: none;
     z-index: 10;
     float: right;
 }

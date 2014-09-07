@@ -26,7 +26,7 @@ namespace angularEx.api
         private Context context = new Context();
 
         [HttpGet]
-        public List<TodoDatas> getAllItems()
+        public List<ExampleDatas> getAllItems()
         {
             var persons = context.TodoData;
             return persons.ToList() != null ?  persons.ToList() : null;
@@ -34,9 +34,9 @@ namespace angularEx.api
 
         
         [HttpGet]
-        public TodoDatas getItem([FromUri] int id)
+        public ExampleDatas getItem([FromUri] int id)
         {
-            TodoDatas aux = context.TodoData.SingleOrDefault(p=> p.Id == id);
+            ExampleDatas aux = context.TodoData.SingleOrDefault(p=> p.Id == id);
             return aux;
         }
 
@@ -46,7 +46,7 @@ namespace angularEx.api
             if (dataObj == null)
                 return false;
 
-            TodoDatas person = context.TodoData.SingleOrDefault(p=> p.Id == dataObj.Id);
+            ExampleDatas person = context.TodoData.SingleOrDefault(p=> p.Id == dataObj.Id);
             person.Name = dataObj.Name;
             person.Description = dataObj.Description;
             person.Site = dataObj.Site;
@@ -61,7 +61,7 @@ namespace angularEx.api
             if (dataObj == null)
                 return false;
 
-            TodoDatas person = new TodoDatas();
+            ExampleDatas person = new ExampleDatas();
             person.Name = dataObj.Name;
             person.Description = dataObj.Description;
             person.Site = dataObj.Site;
@@ -74,7 +74,7 @@ namespace angularEx.api
         [HttpDelete]
         public bool deleteItem([FromUri] int id)
         {
-            TodoDatas person = context.TodoData.SingleOrDefault(p => p.Id == id);
+            ExampleDatas person = context.TodoData.SingleOrDefault(p => p.Id == id);
             if (person == null)
                 return false;
 

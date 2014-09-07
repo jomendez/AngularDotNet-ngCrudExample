@@ -44,29 +44,39 @@
                         if (typeof options == "undefined")
                             return;
 
-                        configCrudService.setContracts(options.data);
-                        var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
+                        if (options.data)
+                            configCrudService.setContracts(options.data);
 
-                        if (options.attr)
-                        htmlBuilder.attr(options.attr);
+                        if ($) {
 
-                        var html = $("<div></div>").append(htmlBuilder).html();
-                        element.append($compile(html)(scope));
+                            var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
 
-                        if (typeof options.callback != "undefined")
-                            options.onDropCallback();
+                            if (options.attr)
+                                htmlBuilder.attr(options.attr);
 
+                            var html = $("<div></div>").append(htmlBuilder).html();
+
+                            if (element.children().length > 0) {
+                                element.children().remove();
+                            }
+
+                            element.append($compile(html)(scope));
+
+                            if (typeof options.onDropCallback != "undefined")
+                                options.onDropCallback();
+
+                            if (options.cleanerSelectorID) {
+                                $("#" + options.cleanerSelectorID).click(function (e) {
+                                    e.preventDefault();
+                                    var elem = element;
+                                    elem.children().remove();
+                                    $(this).unbind( "click" );
+                                });
+                            }
+
+                        }
                     }
                 });
-
-            //    .sortable({
-            //    items: "li:not(.placeholder)",
-            //    sort: function () {
-            //        $(this).removeClass("ui-state-default");
-            //    }
-            //});
-                
-                //element.children().remove()
 
             }
         };

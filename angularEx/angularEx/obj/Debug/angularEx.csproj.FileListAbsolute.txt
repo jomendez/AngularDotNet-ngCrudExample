@@ -108,4 +108,5 @@ C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\bin\
 C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.dll
 C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.pdb
-C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.csprojResolveAssemblyReference.cache
+C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.Migrations.InitialMigration.resources
+C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.csproj.GenerateResource.Cache
