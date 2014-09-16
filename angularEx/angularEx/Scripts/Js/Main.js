@@ -1,1 +1,1 @@
-﻿angular.module("ngCrud", [])
+﻿angular.module("ngCrud", []);

@@ -28,55 +28,58 @@
             restrict: "A",
             replace: true,
             scope: {
-                options: "=droppableItem"
+                options: "=droppableItem",
+                dropOptions: "=dropOptions"
             },
             link: function (scope, element, attrs) {
 
-                $(element).droppable({
-                    activeClass: "ui-state-default",
-                    hoverClass: "ui-state-hover",
-                    accept: ":not(.ui-sortable-helper)",
-                    drop: function (event, ui) {
+                var dropFunction = function (event, ui) {
 
-                        var key = ui.draggable.attr("draggable-item");
-                        var options = scope.options[key];
+                    var key = ui.draggable.attr("draggable-item");
+                    var options = scope.options[key];
 
-                        if (typeof options == "undefined")
-                            return;
+                    if (typeof options == "undefined")
+                        return;
 
-                        if (options.data)
-                            configCrudService.setContracts(options.data);
+                    if (options.data)
+                        configCrudService.setContracts(options.data);
 
-                        if ($) {
+                    if ($) {
 
-                            var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
+                        var htmlBuilder = $("<" + options.tag + "></" + options.tag + ">");
 
-                            if (options.attr)
-                                htmlBuilder.attr(options.attr);
+                        if (options.attr)
+                            htmlBuilder.attr(options.attr);
 
-                            var html = $("<div></div>").append(htmlBuilder).html();
+                        var html = $("<div></div>").append(htmlBuilder).html();
 
-                            if (element.children().length > 0) {
-                                element.children().remove();
-                            }
-
-                            element.append($compile(html)(scope));
-
-                            if (typeof options.onDropCallback != "undefined")
-                                options.onDropCallback();
-
-                            if (options.cleanerSelectorID) {
-                                $("#" + options.cleanerSelectorID).click(function (e) {
-                                    e.preventDefault();
-                                    var elem = element;
-                                    elem.children().remove();
-                                    $(this).unbind( "click" );
-                                });
-                            }
-
+                        if (element.children().length > 0) {
+                            element.children().remove();
                         }
+
+                        element.append($compile(html)(scope));
+
+                        if (typeof options.onDropCallback != "undefined")
+                            options.onDropCallback();
+
+                        if (options.cleanerSelectorID) {
+                            $("#" + options.cleanerSelectorID).click(function (e) {
+                                e.preventDefault();
+                                var elem = element;
+                                elem.children().remove();
+                                $(this).unbind( "click" );
+                            });
+                        }
+
                     }
-                });
+                }
+                var dropOptions = scope.dropOptions || {};
+
+                if (!dropOptions.drop) {
+                    dropOptions.drop = dropFunction
+                }
+
+                $(element).droppable(dropOptions);
 
             }
         };

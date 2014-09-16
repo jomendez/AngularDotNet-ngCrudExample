@@ -110,3 +110,4 @@ C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\
 C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.pdb
 C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.Migrations.InitialMigration.resources
 C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.csproj.GenerateResource.Cache
+C:\Users\Jose\Documents\GitHub\AngularDotNetToDoExample\angularEx\angularEx\obj\Debug\angularEx.csprojResolveAssemblyReference.cache

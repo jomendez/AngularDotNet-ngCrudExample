@@ -45,7 +45,7 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
             },
             cleanerSelectorID:"cleanContent1",
             onDropCallback: function () {
-                console.log("callback alled");
+                console.log("ng-crud drop callback called");
             }
         },
 
@@ -54,14 +54,18 @@ controller("mainWraperController", function ($scope, crudServiceApi, configCrudS
             tag: "delete-Icon",
             cleanerSelectorID: "cleanContent1",
             onDropCallback: function () {
-                console.log("lili");
+                console.log("delete-Icon drop callback called");
             }
         }
 
     }
 
 
-  
+    $scope.dropOptions = {
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        accept: ":not(.ui-sortable-helper)"
+    }
 
     $scope.options = dragAndDropOptions;
 });
