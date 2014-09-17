@@ -1,6 +1,6 @@
 ﻿<div ng-controller="listController">
-    <div class="input-group myprojects-custom-search">
-        <span class="input-group-addon "><i class="glyphicon glyphicon-search myprojects-search-icon"></i></span>
+    <div class="input-group gn-crud-custom-search">
+        <span class="input-group-addon "><i class="glyphicon glyphicon-search gn-crud-search-icon"></i></span>
         <input type="text" ng-model="search" class="search-query form-control" placeholder="Search">
     </div>
 
@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th ng-repeat="column in keyColumns">{{column}}</th>
-                <th class="myprojects-table-td-10">Actions</th>
+                <th class="gn-crud-table-td-10">Actions</th>
             </tr>
         </thead>
         <tbody>

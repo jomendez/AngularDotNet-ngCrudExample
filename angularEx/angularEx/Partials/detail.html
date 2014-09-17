@@ -1,7 +1,7 @@
 ﻿<div ng-controller="detailController">
     <form name="myForm">
 
-        <div ng-repeat="item in crud" ng-show="item.included" class="row myprojects-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
+        <div ng-repeat="item in crud" ng-show="item.included" class="row gn-crud-div-rows" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
             <div class="col-md-2">{{item.key}}</div>
 
             <div class="col-md-8" ng-show="!item.type || item.type =='string'">
